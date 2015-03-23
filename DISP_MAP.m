@@ -1,29 +1,33 @@
-leftImage = imread('pentagon_left.bmp');
-rightImage = imread('pentagon_right.bmp');
+leftImage = im2double(imread('scene_l.bmp'));
+rightImage =  im2double(imread('scene_r.bmp'));
 
-[lW,lH] = size(leftImage);
+[leftWidth,leftHeight] = size(leftImage);
 
-dispMap = zeros(lW,lH);
+dispMap = zeros(leftWidth,leftHeight);
 
-support_windowWidth = 4;
-support_windowHeight = 4;
+search_windowWidth = 9;
+search_windowHeight = 9;
 
+support_windowWidth = 5;
+support_windowHeight = 5;
 
-search_windowWidth = 20;
-search_windowHeight = 20;
+%Get margins for both support and search windows
+searchWindowWidthMargin = (search_windowWidth-1)/2;
+searchWindowHeightMargin = (search_windowHeight-1)/2;
 
-margin_Width = (search_windowWidth + support_windowWidth);
-margin_Height = (search_windowHeight + support_windowHeight);
+supportWindowWidthMargin = (support_windowWidth-1)/2;
+supportWindowHeightMargin = (support_windowHeight-1)/2;
 
-for x  = 1 + margin_Width:lW - margin_Width
-    for y  = 1+ margin_Height:lH - margin_Height
-    
-        [ pixel,cmpValue, dispVector ] = PIXEL_DISP( x, y, leftImage, rightImage, support_windowWidth, support_windowHeight, ...
-            search_windowWidth,search_windowHeight);
+margin_Width = (searchWindowWidthMargin + supportWindowWidthMargin);
+margin_Height = (searchWindowHeightMargin + supportWindowHeightMargin);
+
+for x  = 1 + margin_Width:leftWidth - margin_Width
+    for y  = 1+ margin_Height:leftHeight - margin_Height
+        tic
+        [ pixel,cmpValue, dispVector ] = PIXEL_DISP( x, y, leftImage, rightImage, supportWindowWidthMargin, supportWindowHeightMargin, ...
+            searchWindowWidthMargin,searchWindowHeightMargin);
         
-         dispMap(x,y) = dispVector;                                      
-                                                
+        dispMap(x,y) = sqrt((dispVector(1))^2 + (dispVector(2))^2);
+        toc
     end
 end
-    
-    

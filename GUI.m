@@ -22,7 +22,7 @@ function varargout = GUI(varargin)
 
 % Edit the above text to modify the response to help GUI
 
-% Last Modified by GUIDE v2.5 24-Mar-2015 15:00:24
+% Last Modified by GUIDE v2.5 24-Mar-2015 15:16:44
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -128,8 +128,10 @@ catch
 end
 
 %get search window size
-contents = get(handles.searchSize,'String'); 
-searchSize = str2double(contents{get(handles.searchSize,'Value')});
+contents = get(handles.searchHeight,'String'); 
+searchHeight = str2double(contents{get(handles.searchHeight,'Value')});
+contents = get(handles.searchWidth,'String');
+searchWidth = str2double(contents{get(handles.searchWidth,'Value')});
 
 %get support window size
 contents = get(handles.supportSize,'String'); 
@@ -138,10 +140,10 @@ supportSize = str2double(contents{get(handles.supportSize,'Value')});
 contents = get(handles.dispMethod,'String'); 
 dispMethod = contents{get(handles.dispMethod,'Value')};
 
-if searchSize < supportSize
+if searchWidth < supportSize
 h = msgbox('Search window must be larger than support window!');
 else       
-dispMap = DISP_MAP(leftImage, rightImage, searchSize, searchSize,supportSize,supportSize,dispMethod);
+dispMap = DISP_MAP(leftImage, rightImage, searchWidth, searchHeight,supportSize,supportSize,dispMethod);
 figure, imshow(mat2gray(dispMap));
 end
 
@@ -170,19 +172,19 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 
-% --- Executes on selection change in searchSize.
-function searchSize_Callback(hObject, eventdata, handles)
-% hObject    handle to searchSize (see GCBO)
+% --- Executes on selection change in searchHeight.
+function searchHeight_Callback(hObject, eventdata, handles)
+% hObject    handle to searchHeight (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: contents = cellstr(get(hObject,'String')) returns searchSize contents as cell array
-%        contents{get(hObject,'Value')} returns selected item from searchSize
+% Hints: contents = cellstr(get(hObject,'String')) returns searchHeight contents as cell array
+%        contents{get(hObject,'Value')} returns selected item from searchHeight
 
 
 % --- Executes during object creation, after setting all properties.
-function searchSize_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to searchSize (see GCBO)
+function searchHeight_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to searchHeight (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -214,3 +216,26 @@ function dispMethod_Callback(hObject, eventdata, handles)
 
 % Hints: contents = cellstr(get(hObject,'String')) returns dispMethod contents as cell array
 %        contents{get(hObject,'Value')} returns selected item from dispMethod
+
+
+% --- Executes on selection change in searchWidth.
+function searchWidth_Callback(hObject, eventdata, handles)
+% hObject    handle to searchWidth (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: contents = cellstr(get(hObject,'String')) returns searchWidth contents as cell array
+%        contents{get(hObject,'Value')} returns selected item from searchWidth
+
+
+% --- Executes during object creation, after setting all properties.
+function searchWidth_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to searchWidth (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: popupmenu controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end

@@ -24,7 +24,7 @@ supportWindowHeightMargin = (support_windowHeight-1)/2;
 margin_Width = (searchWindowWidthMargin + supportWindowWidthMargin);
 margin_Height = (searchWindowHeightMargin + supportWindowHeightMargin);
 
-h = waitbar(0,'Please wait...');
+h = waitbar(0,'Calculating disparity....');
 
 for x  = 1 + margin_Width:leftWidth - margin_Width
     for y  = 1+ margin_Height:leftHeight - margin_Height
@@ -37,5 +37,7 @@ for x  = 1 + margin_Width:leftWidth - margin_Width
     end
    waitbar( x / (leftWidth - margin_Width)) 
 end
+
+close(h);
 
 end

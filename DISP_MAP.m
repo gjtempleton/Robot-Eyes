@@ -1,7 +1,7 @@
 function dispMap = DISP_MAP(leftImage, rightImage, search_windowWidth, search_windowHeight,support_windowWidth,support_windowHeight)
 
-% leftImage = im2double(imread('scene_l.bmp'));
-% rightImage =  im2double(imread('scene_r.bmp'));
+leftImage = im2double(leftImage);
+rightImage =  im2double(rightImage);
 
 [leftHeight,leftWidth]= size(leftImage);
 

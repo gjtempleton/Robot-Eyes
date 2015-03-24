@@ -135,8 +135,8 @@ searchSize = str2double(contents{get(handles.searchSize,'Value')});
 contents = get(handles.supportSize,'String'); 
 supportSize = str2double(contents{get(handles.supportSize,'Value')});
 
-contents = get(handles.supportSize,'String'); 
-dispMethod = contents{get(handles.supportSize,'Value')};
+contents = get(handles.dispMethod,'String'); 
+dispMethod = contents{get(handles.dispMethod,'Value')};
 
 if searchSize < supportSize
 h = msgbox('Search window must be larger than support window!');

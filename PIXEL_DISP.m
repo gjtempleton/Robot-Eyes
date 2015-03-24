@@ -1,4 +1,4 @@
-function [ pixel,cmpValue, dispVector] = PIXEL_DISP( xcoord, ycoord, leftImage, rightImage, support_width, support_height,search_Width,search_Height)
+function [ pixel,cmpValue, dispVector] = PIXEL_DISP( xcoord, ycoord, leftImage, rightImage, support_width, support_height,search_Width,search_Height,dispMethod)
 %UNTITLED Summary of this function goes here
 %   Detailed explanation goes here
 
@@ -12,7 +12,7 @@ for x = xcoord - search_Width :xcoord  + search_Width
         
         rightWindow = rightImage(x-support_width : x+support_width, y-support_height : y+support_height);
         
-        diff = SUPPORT_CMP(leftWindow, rightWindow);
+        diff = abs(SUPPORT_CMP(leftWindow, rightWindow,dispMethod));
         
         if diff < cmpValue
             cmpValue = diff;

@@ -1,4 +1,4 @@
-function dispMap = DISP_MAP(leftImage, rightImage, search_windowWidth, search_windowHeight,support_windowWidth,support_windowHeight)
+function dispMap = DISP_MAP(leftImage, rightImage, search_windowWidth, search_windowHeight,support_windowWidth,support_windowHeight,dispMethod)
 
 leftImage = im2double(leftImage);
 rightImage =  im2double(rightImage);
@@ -33,7 +33,7 @@ for x  = 1 + margin_Width:leftWidth - margin_Width
          %Get the best match pixel in the right image's location, the value
         %returned by the difference measure and the vector between the two.
         [ pixel,cmpValue, dispVector ] = PIXEL_DISP( x, y, leftImage, rightImage, supportWindowWidthMargin, supportWindowHeightMargin, ...
-            searchWindowWidthMargin,searchWindowHeightMargin);
+            searchWindowWidthMargin,searchWindowHeightMargin,dispMethod);
         
       %Populate the corresponding pixel in the disparity map image with
         %the magnitude of the vector.

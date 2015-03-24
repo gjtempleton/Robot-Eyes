@@ -25,7 +25,7 @@ elseif strcmp(method,'SAD')
 
 elseif strcmp(method,'CRS')   
     
-    diffNum = sum(sum(normxcorr2(windowL, windowR)));
+    diffNum = ;
     
 end
 

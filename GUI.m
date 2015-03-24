@@ -82,6 +82,10 @@ function loadLeft_Callback(hObject, eventdata, handles)
 %get image name and read in image
 imageName = [pathName,fileName];
 image = imread(imageName);
+%Check if images is RGB, if so change to grayscale
+if size(image, 3)==3
+    image = rgb2gray(image);
+end
 
 %store image so it can be used in other functions
 
@@ -103,6 +107,11 @@ function rightLoad_Callback(hObject, eventdata, handles)
 %get image name and read in image
 imageName = [pathName,fileName];
 image = imread(imageName);
+%Check if images is RGB, if so change to grayscale
+if size(image, 3)==3
+    image = rgb2gray(image);
+end
+
 
 %store image so it can be used in other functions
 data = guidata(hObject);

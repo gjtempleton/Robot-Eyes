@@ -22,7 +22,7 @@ function varargout = GUI(varargin)
 
 % Edit the above text to modify the response to help GUI
 
-% Last Modified by GUIDE v2.5 24-Mar-2015 12:10:45
+% Last Modified by GUIDE v2.5 24-Mar-2015 09:39:24
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -135,10 +135,6 @@ searchSize = str2double(contents{get(handles.searchSize,'Value')});
 contents = get(handles.supportSize,'String'); 
 supportSize = str2double(contents{get(handles.supportSize,'Value')});
 
-%get desparity method
-contents = get(handles.dispMethod,'String'); 
-dispMethod = contents{get(handles.dispMethod,'Value')};
-
 if searchSize < supportSize
 h = msgbox('Search window must be larger than support window!');
 else       
@@ -186,29 +182,6 @@ function searchSize_Callback(hObject, eventdata, handles)
 % --- Executes during object creation, after setting all properties.
 function searchSize_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to searchSize (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: popupmenu controls usually have a white background on Windows.
-%       See ISPC and COMPUTER.
-if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor','white');
-end
-
-
-% --- Executes on selection change in dispMethod.
-function dispMethod_Callback(hObject, eventdata, handles)
-% hObject    handle to dispMethod (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: contents = cellstr(get(hObject,'String')) returns dispMethod contents as cell array
-%        contents{get(hObject,'Value')} returns selected item from dispMethod
-
-
-% --- Executes during object creation, after setting all properties.
-function dispMethod_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to dispMethod (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 

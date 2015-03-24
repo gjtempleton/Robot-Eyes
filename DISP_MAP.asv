@@ -30,19 +30,16 @@ tic
 %Loop through entire left image
 for x  = 1 + margin_Width:leftWidth - margin_Width
     for y  = 1+ margin_Height:leftHeight - margin_Height
-         %Get the best match pixel in the right image's location, the value
-        %returned by the difference measure and the vector between the two.
+        tic
         [ pixel,cmpValue, dispVector ] = PIXEL_DISP( x, y, leftImage, rightImage, supportWindowWidthMargin, supportWindowHeightMargin, ...
             searchWindowWidthMargin,searchWindowHeightMargin);
         
-      %Populate the corresponding pixel in the disparity map image with
-        %the magnitude of the vector.
-        dispMap(y,x) = sqrt((dispVector(1))^2 + (dispVector(2))^2);
-             
+        dispMap(x,y) = sqrt((dispVector(1))^2 + (dispVector(2))^2);
+        toc        
     end
    waitbar( x / (leftWidth - margin_Width)) 
 end
 
 close(h);
- toc  
+
 end

@@ -2,7 +2,7 @@ function [ pixel,cmpValue, dispVector] = PIXEL_DISP( xcoord, ycoord, leftImage, 
 %UNTITLED Summary of this function goes here
 %   Detailed explanation goes here
 
-pixel = [0,0];
+pixel = [0, 0];
 cmpValue = 10000;
 
 leftWindow = leftImage(ycoord-support_height : ycoord+support_height, xcoord-support_width : xcoord+support_width);
@@ -22,7 +22,13 @@ for x = xcoord - search_Width :xcoord  + search_Width
     end
 end
 
-dispVector = [(pixel(1) - xcoord), (pixel(2) - ycoord)];
+%Sanity check on the pixel that's the best match, if no pixel that's a good
+%match has been found, set the vector as [0,0]
+if pixel(1)==0
+    dispVector = [0,0];
+else
+    dispVector = [(pixel(1) - xcoord), (pixel(2) - ycoord)];
+end
 
 end
 

@@ -2,7 +2,7 @@ function [ pixel,cmpValue, dispVector] = PIXEL_DISP( xcoord, ycoord, leftImage, 
 %UNTITLED Summary of this function goes here
 %   Detailed explanation goes here
 
-pixel = [];
+pixel = [0,0];
 cmpValue = 10000;
 
 leftWindow = leftImage(ycoord-support_height : ycoord+support_height, xcoord-support_width : xcoord+support_width);
